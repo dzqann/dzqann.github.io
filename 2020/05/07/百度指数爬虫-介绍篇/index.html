@@ -6,17 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: node.js | 程序员的小迷弟的博客</title>
+  <title>百度指数爬虫|介绍篇 | 程序员的小迷弟的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="大四本科生一枚">
-<meta property="og:type" content="website">
-<meta property="og:title" content="程序员的小迷弟的博客">
-<meta property="og:url" content="http://yoursite.com/tags/node-js/index.html">
+  <meta name="description" content="写在前面​    前端时间写了几个爬虫，其中有一个是爬取百度指数。这是我第一次知道百度指数这个东西，以前我只是知道怎么用百度的。百度指数呢，大概长下面这个样子(用我最喜欢的歌手举例子)：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="百度指数爬虫|介绍篇">
+<meta property="og:url" content="http://yoursite.com/2020/05/07/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E4%BB%8B%E7%BB%8D%E7%AF%87/index.html">
 <meta property="og:site_name" content="程序员的小迷弟的博客">
-<meta property="og:description" content="大四本科生一枚">
+<meta property="og:description" content="写在前面​    前端时间写了几个爬虫，其中有一个是爬取百度指数。这是我第一次知道百度指数这个东西，以前我只是知道怎么用百度的。百度指数呢，大概长下面这个样子(用我最喜欢的歌手举例子)：">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://q8xq74chp.bkt.clouddn.com/img/20200507161501.png">
+<meta property="og:image" content="http://q8xq74chp.bkt.clouddn.com/img/20200507162653.png">
+<meta property="og:image" content="http://q8xq74chp.bkt.clouddn.com/img/20200507164535.gif">
+<meta property="og:image" content="http://q8xq74chp.bkt.clouddn.com/img/20200507165714.gif">
+<meta property="og:image" content="http://yoursite.com/2020/05/07/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E4%BB%8B%E7%BB%8D%E7%AF%87/3.gif">
+<meta property="article:published_time" content="2020-05-07T07:55:16.000Z">
+<meta property="article:modified_time" content="2020-05-07T09:08:27.648Z">
 <meta property="article:author" content="程序员的小迷弟">
+<meta property="article:tag" content="百度指数">
+<meta property="article:tag" content="BaiduIndex">
+<meta property="article:tag" content="爬虫">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://q8xq74chp.bkt.clouddn.com/img/20200507161501.png">
   
     <link rel="alternative" href="/atom.xml" title="程序员的小迷弟的博客" type="application/atom+xml">
   
@@ -130,72 +141,197 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-百度指数爬虫-介绍篇" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/09/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2020-04-09T12:54:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        <center><p>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/09/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">使用hexo搭建个人博客</a>
+    <h1 class="article-title_code_ant" itemprop="name">
+      百度指数爬虫|介绍篇
     </h1>
   
+</p></center>
+        
+        <a href="/2020/05/07/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E4%BB%8B%E7%BB%8D%E7%AF%87/" class="archive-article-date">
+  	<time datetime="2020-05-07T07:55:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>​    前端时间写了几个爬虫，其中有一个是爬取百度指数。这是我第一次知道百度指数这个东西，以前我只是知道怎么用百度的。百度指数呢，大概长下面这个样子(用我最喜欢的歌手举例子)：</p>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
+<p><img src="http://q8xq74chp.bkt.clouddn.com/img/20200507161501.png" alt="image-20200507161438341"></p>
+<p>百度指数可以显示每一天有多少人搜索指定的关键词，而且可以自己选择PC端、移动端，可以自己选择不同的省份。而这次项目的需求呢，就是让我去爬取百度指数</p>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>​    这次的需求呢大概分为以下几点：</p>
+<ol>
+<li>用户给出要爬取的关键词，以Excel的形式提供</li>
+<li>爬取能爬取到的每一天、每一个省份、每一个关键词的PC端、移动端、以及PC+移动端的搜索数量</li>
+<li>爬取结果以Excel的形式保存</li>
+<li>提供界面，不可以只在命令行运行</li>
+</ol>
+<h2 id="演示示例"><a href="#演示示例" class="headerlink" title="演示示例"></a>演示示例</h2><ul>
+<li><p>首先打开程序，会看到下面的界面：</p>
+<p><img src="http://q8xq74chp.bkt.clouddn.com/img/20200507162653.png" alt="image-20200507162652218"></p>
+</li>
+<li><p>点击选择文件，然后勾选要爬取的关键词的Excel，文件目录框会自动显示勾选的文件的路径。下面的滚动窗口会显示获得的要爬取的关键词列表：</p>
+</li>
+</ul>
+<p><img src="http://q8xq74chp.bkt.clouddn.com/img/20200507164535.gif" alt></p>
+<ul>
+<li>点击开始爬虫，程序就开始工作了。当然，如果你想搜索百度指数，那么你必须先登录，而爬虫怎么让自己看起来是登录的状态呢？就是用Cookie。所以如果你没有Cookie或者Cookie过期了，那么你就需要重新输入Cookie</li>
+</ul>
+<p><img src="http://q8xq74chp.bkt.clouddn.com/img/20200507165714.gif" alt></p>
+<p>​    然后仔细看上面的滚动窗口你就可以发现，爬虫会先判断关键词是否被百度指数收录，然后会将收录的关键词重新提取出来，开始爬取搜索数量。当关键词过多的时候，爬虫会每10个关键词保存成一个Excel</p>
+<ul>
+<li>Excel示例</li>
+</ul>
+<p><img src="/2020/05/07/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E4%BB%8B%E7%BB%8D%E7%AF%87/3.gif" alt></p>
+<p>​    可以看到每一个关键词分3列，第一列是PC端，第二列是移动端，最后一列是PC+移动端。有趣的是可能2006年Angelababy、迪丽热巴他们还没出道呢，所以没有人搜索他们。然后第一个Sheet存放的是2011年以前的全国综合数据，之后每一个sheet会保存各个省市从2011年开始到爬虫那天的前一天为止的每一天的搜索数据。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>​    其实这个爬虫还是挺有意思的，爬取的结果的分析价值也比较大，而且涉及到的Python的知识也比较全面。所以我就想把这个爬虫拿出来，分几期介绍一下。希望大家喜欢！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">百度指数</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">node.js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">BaiduIndex</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人博客</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/07/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E4%BB%8B%E7%BB%8D%E7%AF%87/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/04/19/%E6%98%8E%E5%9F%BABL2480T%E6%B5%8B%E8%AF%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">明基BL2480T测评</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#写在前面"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求"><span class="toc-number">2.</span> <span class="toc-text">需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#演示示例"><span class="toc-number">3.</span> <span class="toc-text">演示示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写在最后"><span class="toc-number">4.</span> <span class="toc-text">写在最后</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -218,9 +354,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: false,
