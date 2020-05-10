@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>百度指数爬虫|爬虫篇(一) | 程序员的小迷弟的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="资源收集   在写爬虫之前，一定要先在知乎、简书、CSDN、github这种网站上查查有没有人做过类似的事情。目的并不一定是抄他们的代码，而是看他们是怎么分析的，他们都发现了哪些网站的反爬措施，又是怎么解决的。通过看他们的文章和代码，可以让自己少走很多弯路。我这次写爬虫就是参考了一篇文章和一个代码。 接口分析界面构成   首先百度指数的首页链接是http:&#x2F;&#x2F;index.baidu.com&#x2F;，打开">
+  <meta name="description" content="资源收集   在写爬虫之前，一定要先在知乎、简书、CSDN、github这种网站上查查有没有人做过类似的事情。目的并不一定是抄他们的代码，而是看他们是怎么分析的，他们都发现了哪些网站的反爬措施，又是怎么解决的。通过看他们的文章和代码，可以让自己少走很多弯路。我这次写爬虫就是参考了一篇文章和一个代码。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="百度指数爬虫|爬虫篇(一)">
 <meta property="og:url" content="http://yoursite.com/2020/05/11/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E7%AF%87-%E4%B8%80/index.html">
 <meta property="og:site_name" content="程序员的小迷弟的博客">
-<meta property="og:description" content="资源收集   在写爬虫之前，一定要先在知乎、简书、CSDN、github这种网站上查查有没有人做过类似的事情。目的并不一定是抄他们的代码，而是看他们是怎么分析的，他们都发现了哪些网站的反爬措施，又是怎么解决的。通过看他们的文章和代码，可以让自己少走很多弯路。我这次写爬虫就是参考了一篇文章和一个代码。 接口分析界面构成   首先百度指数的首页链接是http:&#x2F;&#x2F;index.baidu.com&#x2F;，打开">
+<meta property="og:description" content="资源收集   在写爬虫之前，一定要先在知乎、简书、CSDN、github这种网站上查查有没有人做过类似的事情。目的并不一定是抄他们的代码，而是看他们是怎么分析的，他们都发现了哪些网站的反爬措施，又是怎么解决的。通过看他们的文章和代码，可以让自己少走很多弯路。我这次写爬虫就是参考了一篇文章和一个代码。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://q8xq74chp.bkt.clouddn.com/img/20200510002346.png">
 <meta property="og:image" content="http://q8xq74chp.bkt.clouddn.com/img/20200510002929.png">
@@ -27,10 +27,10 @@
 <meta property="og:image" content="http://q8xq74chp.bkt.clouddn.com/img/20200510154500.png">
 <meta property="og:image" content="http://q8xq74chp.bkt.clouddn.com/img/20200510163018.png">
 <meta property="article:published_time" content="2020-05-11T08:04:33.000Z">
-<meta property="article:modified_time" content="2020-05-10T08:39:59.078Z">
+<meta property="article:modified_time" content="2020-05-10T08:44:07.313Z">
 <meta property="article:author" content="程序员的小迷弟">
-<meta property="article:tag" content="BaiduIndex">
 <meta property="article:tag" content="百度指数">
+<meta property="article:tag" content="BaiduIndex">
 <meta property="article:tag" content="爬虫">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://q8xq74chp.bkt.clouddn.com/img/20200510002346.png">
@@ -168,6 +168,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="资源收集"><a href="#资源收集" class="headerlink" title="资源收集"></a>资源收集</h2><p>   在写爬虫之前，一定要先在知乎、简书、CSDN、github这种网站上查查有没有人做过类似的事情。目的并不一定是抄他们的代码，而是看他们是怎么分析的，他们都发现了哪些网站的反爬措施，又是怎么解决的。通过看他们的文章和代码，可以让自己少走很多弯路。我这次写爬虫就是参考了一篇文章和一个代码。</p>
+<a id="more"></a>
+
 <h2 id="接口分析"><a href="#接口分析" class="headerlink" title="接口分析"></a>接口分析</h2><h3 id="界面构成"><a href="#界面构成" class="headerlink" title="界面构成"></a>界面构成</h3><p>   首先百度指数的首页链接是<strong><a href="http://index.baidu.com/" target="_blank" rel="noopener">http://index.baidu.com/</a></strong>，打开之后就可以看到如下界面：</p>
 <p><img src="http://q8xq74chp.bkt.clouddn.com/img/20200510002346.png" alt="image-20200510002344026"></p>
 <p>​      然后我们在关键词里搜索信息，就可以查看百度指数结果了：</p>
@@ -238,11 +240,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">BaiduIndex</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">百度指数</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">百度指数</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">BaiduIndex</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -478,18 +480,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">BaiduIndex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">百度指数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">明基</a>
               </li>
              
@@ -507,6 +497,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">办公</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">百度指数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">BaiduIndex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
             
             <div class="clearfix"></div>
