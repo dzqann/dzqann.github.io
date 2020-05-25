@@ -6,17 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>程序员的小迷弟的博客</title>
+  <title>百度指数爬虫|爬虫篇(二) | 程序员的小迷弟的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="大四本科生一枚">
-<meta property="og:type" content="website">
-<meta property="og:title" content="程序员的小迷弟的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="引言​    真的是论文写多了，竟然写了这样一个题目。之前的那篇《百度指数爬虫|爬虫篇(一)》介绍了百度指数爬虫的核心流程，包括如何获取密文、秘钥，如何解密。今天我们来解决掉其中的一些坑。 ​    现在我们只是有了获取数据的功能，而我们的需求比这要复杂的多，我们要爬取所有关键词、2006至今每天、全国各省市的搜索数量。这可是一个大工程，而且有很多很多的坑在等着我们！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="百度指数爬虫|爬虫篇(二)">
+<meta property="og:url" content="http://yoursite.com/2020/05/24/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E7%AF%87-%E4%BA%8C/index.html">
 <meta property="og:site_name" content="程序员的小迷弟的博客">
-<meta property="og:description" content="大四本科生一枚">
+<meta property="og:description" content="引言​    真的是论文写多了，竟然写了这样一个题目。之前的那篇《百度指数爬虫|爬虫篇(一)》介绍了百度指数爬虫的核心流程，包括如何获取密文、秘钥，如何解密。今天我们来解决掉其中的一些坑。 ​    现在我们只是有了获取数据的功能，而我们的需求比这要复杂的多，我们要爬取所有关键词、2006至今每天、全国各省市的搜索数量。这可是一个大工程，而且有很多很多的坑在等着我们！">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2020/05/24/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E7%AF%87-%E4%BA%8C/image-20200526003328140.png">
+<meta property="article:published_time" content="2020-05-24T04:48:07.000Z">
+<meta property="article:modified_time" content="2020-05-25T16:38:51.262Z">
 <meta property="article:author" content="程序员的小迷弟">
+<meta property="article:tag" content="百度指数">
+<meta property="article:tag" content="BaiduIndex">
+<meta property="article:tag" content="爬虫">
+<meta property="article:tag" content="Python爬虫">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/24/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E7%AF%87-%E4%BA%8C/image-20200526003328140.png">
   
     <link rel="alternative" href="/atom.xml" title="程序员的小迷弟的博客" type="application/atom+xml">
   
@@ -130,16 +138,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-百度指数爬虫-爬虫篇-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-百度指数爬虫-爬虫篇-二" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         <center><p>
   
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/2020/05/24/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E7%AF%87-%E4%BA%8C/">百度指数爬虫|爬虫篇(二)</a>
+    <h1 class="article-title_code_ant" itemprop="name">
+      百度指数爬虫|爬虫篇(二)
     </h1>
   
 </p></center>
@@ -154,7 +160,61 @@
       
         <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>​    真的是论文写多了，竟然写了这样一个题目。之前的那篇《百度指数爬虫|爬虫篇(一)》介绍了百度指数爬虫的核心流程，包括如何获取密文、秘钥，如何解密。今天我们来解决掉其中的一些坑。</p>
 <p>​    现在我们只是有了获取数据的功能，而我们的需求比这要复杂的多，我们要爬取所有关键词、2006至今每天、全国各省市的搜索数量。这可是一个大工程，而且有很多很多的坑在等着我们！</p>
-        
+<a id="more"></a>
+
+<h2 id="那些踩过的坑"><a href="#那些踩过的坑" class="headerlink" title="那些踩过的坑"></a>那些踩过的坑</h2><ul>
+<li><p>并不是所有关键词都被录取</p>
+<p>百度指数收录的关键词其实是有限的，比如我在写这次的爬虫时，客户一共给了几百个关键词，最后发现其实被收录的只有十几个。其实这个跟关键词本身也有关系，明星什么的肯定是有的，太生僻的词难免会没被收录</p>
+</li>
+<li><p>并不是所有日期都可以查询各省的搜索数量</p>
+<p>百度指数有一个非常重要的分界点：2011年01月01日。在这之前只能查询全国的搜索次数，并且只有PC端的数据，可能那时还没有做百度的APP吧</p>
+</li>
+<li><p>一次只能搜索5个关键词</p>
+<p>百度指数是有对比多个关键词的搜索次数的功能的，这就意味着你可以一次查询多个关键词。但是数量也是有上限的，一次最多可以查5个关键词</p>
+</li>
+<li><p>必须在登录状态下才可以使用百度指数</p>
+<p>百度指数必须登录才可以使用，否则会跳出让你登录的弹窗，其实就挺麻烦</p>
+</li>
+<li><p>要能够获得每天的搜索次数，那么一次只能查300天</p>
+<p>百度指数不会很轻易的让你获取每天的数量的，如果你直接把时间调成2006年到现在，那么只会给你每隔几个月的总的搜索次数给你。通过实验发现，当你把时间范围调到300天以内，会返回每天的数据。这也就意味着如果你想获取每天的数据，那你就只能每300天获取一次，从2006年06月01日开始，到今天，每300天爬取一次</p>
+</li>
+</ul>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><ul>
+<li><p>首先在真正爬取数据之前，先检验有没有登录，其实也就是Cookie有没有失效。判断有没有登录的方法也很简单：直接请求百度主页，如果出现了登录的超链接，意味着Cookie已经失效了，必须要更新Cookie了，好的，上代码：</p>
+<p>首先为整个Spider顶一个get方法，参数是url，用于请求url并返回相应数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, url)</span>:</span></span><br><span class="line">    headers[<span class="string">'Cookie'</span>] = self.cookie</span><br><span class="line">    res = requests.get(url, headers=headers, timeout=<span class="number">30</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> res.status_code == <span class="number">200</span>:</span><br><span class="line">        <span class="keyword">raise</span> requests.Timeout</span><br><span class="line">    <span class="keyword">return</span> res.text</span><br></pre></td></tr></table></figure>
+<p>之后我们定义is_login方法，用于判定用户是否登录。先请求百度的首页，然后使用XPath语法查看有没有登录的超链接，来判断是否已登录：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_login</span><span class="params">(self)</span>:</span></span><br><span class="line">    req = self.get(<span class="string">"https://www.baidu.com"</span>)</span><br><span class="line">    html = etree.HTML(req)</span><br><span class="line">    login = html.xpath(<span class="string">"//a[@name='tj_login']"</span>)</span><br><span class="line">    <span class="keyword">return</span> len(login) == <span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>之后我们要筛选关键词列表中被百度指数录取的关键词，方法也很简单。原理就是如果关键词没有被百度指数录取，那么返回的查询搜索次数的结果就会是一个空的字符串。所以我们就发送一个请求，看看返回解果是不是一个空字符串就好了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_keyword</span><span class="params">(self, keyword)</span>:</span></span><br><span class="line">    result = self.get(<span class="string">"http://index.baidu.com/api/AddWordApi/checkWordsExists?word=&#123;&#125;"</span>.format(keyword))</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        result = json.loads(result)</span><br><span class="line">        data = result[<span class="string">'data'</span>][<span class="string">'result'</span>]</span><br><span class="line">        <span class="keyword">return</span> len(data) == <span class="number">0</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>现在我们有了已经被录取的所有关键词了，然后就是构造请求队列了。为什么要构造这个东西呢？其实一般的爬虫就是发一个请求，接收到响应就好了。但是前面写了百度指数的坑，一次只能查5个关键词，一次只能查300天。随意我们就需要把关键词每5个分成一组，日期每300天分成一组。然后所有的关键词组合所有的日期组进行两两配对，最后构成我们的请求队列。先来个简单的，关键词每5个一组：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">split_keywords</span><span class="params">(self, keywords: list)</span> -&gt; [list]:</span></span><br><span class="line">    <span class="keyword">return</span> [keywords[i * <span class="number">5</span>: (i + <span class="number">1</span>) * <span class="number">5</span>] <span class="keyword">for</span> i <span class="keyword">in</span> range(math.ceil(len(keywords) / <span class="number">5</span>))]</span><br></pre></td></tr></table></figure>
+
+<p>是不是很简单，其实只有一行代码。然后我们来一个稍微难一点的，日期每300天分成一组：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_time_range_list</span><span class="params">(self, start_date: str, end_date: str)</span> -&gt; list:</span></span><br><span class="line">    date_range_list = list()</span><br><span class="line">    startdate = datetime.datetime.strptime(start_date, <span class="string">'%Y-%m-%d'</span>)</span><br><span class="line">    enddate = datetime.datetime.strptime(end_date, <span class="string">'%Y-%m-%d'</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        tempdate = startdate + datetime.timedelta(days=<span class="number">300</span>)</span><br><span class="line">        <span class="keyword">if</span> tempdate &gt; enddate:</span><br><span class="line">            date_range_list.append((startdate, enddate))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">            date_range_list.append((startdate, tempdate))</span><br><span class="line">            startdate = tempdate + datetime.timedelta(days=<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> date_range_list</span><br></pre></td></tr></table></figure>
+
+<p>代码看着多，其实原理很简单。使用了Python的时间日期库datetime。先把传进来的字符串格式的开始日期和结束日期转化成日期类型。之后进入循环，每次给开始日期加上300天，直到开始日期大于结束日期为止，这样就构造出来每300天一组的日期分组了</p>
+<p>现在我们有了关键词分组，有了日期分组，最后就差把他们两个拼在一起了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init_queue</span><span class="params">(self, start_date: str, end_date: str, keywords: list)</span>:</span></span><br><span class="line">    self.params_queue = Queue()</span><br><span class="line">    keywords_list = self.split_keywords(keywords)</span><br><span class="line">    time_range_list = self.get_time_range_list(start_date, end_date)</span><br><span class="line">    <span class="keyword">for</span> start_date, end_date <span class="keyword">in</span> time_range_list:</span><br><span class="line">        <span class="keyword">for</span> keywords <span class="keyword">in</span> keywords_list:</span><br><span class="line">            params = &#123;</span><br><span class="line">                <span class="string">'keywords'</span>: keywords,</span><br><span class="line">                <span class="string">'start_date'</span>: start_date,</span><br><span class="line">                <span class="string">'end_date'</span>: end_date</span><br><span class="line">            &#125;</span><br><span class="line">            self.params_queue.put(params)</span><br></pre></td></tr></table></figure>
+
+<p>首先获取日期和关键词分组，然后进入循环，用一个嵌套循环，把两个分组里面的元素拼在一起</p>
+</li>
+</ul>
+<h2 id="测试一下"><a href="#测试一下" class="headerlink" title="测试一下"></a>测试一下</h2><ul>
+<li><p>首先我们编写一段测试代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> BaiduIndexSpider</span><br><span class="line"></span><br><span class="line">keyword = [<span class="string">'Java'</span>, <span class="string">'Python'</span>, <span class="string">'C'</span>, <span class="string">"sakdhkasdkkhk"</span>, <span class="string">'PHP'</span>, <span class="string">'Matlab'</span>, <span class="string">'C++'</span>, <span class="string">'HTML'</span>]</span><br><span class="line">spider = BaiduIndexSpider.BaiduIndexSpider(keyword)</span><br><span class="line">print(<span class="string">"是否登陆：&#123;&#125;"</span>.format(spider.is_login()))</span><br><span class="line">print(<span class="string">"*"</span> * <span class="number">20</span>)</span><br><span class="line">real_list = list()</span><br><span class="line"><span class="keyword">for</span> each <span class="keyword">in</span> keyword:</span><br><span class="line">    each_result = spider.is_keyword(each)</span><br><span class="line">    print(<span class="string">"&#123;&#125;:&#123;&#125;"</span>.format(each, each_result))</span><br><span class="line">    <span class="keyword">if</span> each_result:</span><br><span class="line">        real_list.append(each)</span><br><span class="line">print(<span class="string">"*"</span> * <span class="number">20</span>)</span><br><span class="line">spider.init_queue(<span class="string">"2006-06-01"</span>, <span class="string">"2008-12-31"</span>, real_list)</span><br><span class="line">queue = spider.params_queue</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">not</span> queue.empty():</span><br><span class="line">    print(queue.get())</span><br></pre></td></tr></table></figure>
+
+<p>先创建BaiduIndexSpider对象，然后分别测试之前写的方法</p>
+</li>
+<li><p>运行结果：</p>
+<p><img src="/2020/05/24/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E7%AF%87-%E4%BA%8C/image-20200526003328140.png" alt="image-20200526003328140"></p>
+<p>可以看到所有的方法都达到了语气的效果，吧关键词分成了两组，第一组有Java、Python、C、PHP、Matlab，第二组有C++和HTML。日期分成了3组，第一组从2006-06-01到2007-03-28，第二组从2007-03-29到2008-11-19，最后一组从2008-11-20-2008-12-31。同时关键词分组和日期分组进行了两两配对</p>
+</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>其实今天的内容和真正的爬虫关系不大，也算是前期准备工作，不过这些也都是Python的一些语法基础，特别是datetime模块，在各种场合都会遇到。后面一一期将会是爬虫篇的最后一期，希望大家喜欢！</p>
+
       
 
       
@@ -188,16 +248,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/24/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E7%AF%87-%E4%BA%8C/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/24/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E7%AF%87-%E4%BA%8C/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/11/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E7%AF%87-%E4%B8%80/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">百度指数爬虫|爬虫篇(一)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -212,356 +331,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-百度指数爬虫-爬虫篇-一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        <center><p>
-  
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/2020/05/11/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E7%AF%87-%E4%B8%80/">百度指数爬虫|爬虫篇(一)</a>
-    </h1>
-  
-</p></center>
-        
-        <a href="/2020/05/11/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E7%AF%87-%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2020-05-11T08:04:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="资源收集"><a href="#资源收集" class="headerlink" title="资源收集"></a>资源收集</h2><p>   在写爬虫之前，一定要先在知乎、简书、CSDN、github这种网站上查查有没有人做过类似的事情。目的并不一定是抄他们的代码，而是看他们是怎么分析的，他们都发现了哪些网站的反爬措施，又是怎么解决的。通过看他们的文章和代码，可以让自己少走很多弯路。我这次写爬虫就是参考了一篇文章和一个代码。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">百度指数</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">BaiduIndex</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/11/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E7%88%AC%E8%99%AB%E7%AF%87-%E4%B8%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#那些踩过的坑"><span class="toc-number">2.</span> <span class="toc-text">那些踩过的坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决办法"><span class="toc-number">3.</span> <span class="toc-text">解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试一下"><span class="toc-number">4.</span> <span class="toc-text">测试一下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">5.</span> <span class="toc-text">结语</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
+  
+  
+  
 
   
-    <article id="post-百度指数爬虫-介绍篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        <center><p>
-  
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/2020/05/07/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E4%BB%8B%E7%BB%8D%E7%AF%87/">百度指数爬虫|介绍篇</a>
-    </h1>
-  
-</p></center>
-        
-        <a href="/2020/05/07/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E4%BB%8B%E7%BB%8D%E7%AF%87/" class="archive-article-date">
-  	<time datetime="2020-05-07T07:55:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>​    前端时间写了几个爬虫，其中有一个是爬取百度指数。这是我第一次知道百度指数这个东西，以前我只是知道怎么用百度的。百度指数呢，大概长下面这个样子(用我最喜欢的歌手举例子)：</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">百度指数</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">BaiduIndex</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/07/%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0%E7%88%AC%E8%99%AB-%E4%BB%8B%E7%BB%8D%E7%AF%87/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
 
   
-    <article id="post-明基BL2480T测评" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        <center><p>
-  
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/2020/04/19/%E6%98%8E%E5%9F%BABL2480T%E6%B5%8B%E8%AF%84/">明基BL2480T测评</a>
-    </h1>
-  
-</p></center>
-        
-        <a href="/2020/04/19/%E6%98%8E%E5%9F%BABL2480T%E6%B5%8B%E8%AF%84/" class="archive-article-date">
-  	<time datetime="2020-04-19T14:06:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>​    首先必须要说，这是一篇被女朋友催了好久好久的文章哈哈哈，自从买了这台显示器，女朋友就催着我出测评，然后说让我写推送，她转发。这段时间毕设、英语一直在忙，终于有时间，可以好好写一篇文章了哈！</p>
-<img src="http://q8xq74chp.bkt.clouddn.com/img/20200420132726.png" style="zoom:75%;">
 
-<p>​    总的来说就是，前一段时间自己接了几个爬虫的活，挣了一些钱，然后正好压力非常非常大，就买了一个显示器奖励自己一下，然后就觉得，这台显示器非常非常棒，就写了一篇文章放出来一起分享一下。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">明基</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">BL2480T</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">显示器</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">程序员</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">办公</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/19/%E6%98%8E%E5%9F%BABL2480T%E6%B5%8B%E8%AF%84/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-使用hexo搭建个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        <center><p>
-  
-    <h1 itemprop="name">
-      <a class="article-title_code_ant" href="/2020/04/09/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">使用hexo搭建个人博客</a>
-    </h1>
-  
-</p></center>
-        
-        <a href="/2020/04/09/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2020-04-09T12:54:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近在b站上发现了一个我很喜欢的博主哈，叫程序羊(CodeSheep)，然后看他的视频学会了怎么用hexo搭建自己的个人博客网站哈，然后也学到了怎么将自己的网站部署到Github上面去。听说以后面试的时候有自己的个人博客是一个加分项哎，然后自己也确实想通过写东西的方式记录自己的学习日常，嗯！所以要开始行动起来了！</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">node.js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Github</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">个人博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/09/%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -584,8 +379,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
